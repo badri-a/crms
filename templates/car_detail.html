@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} Detail of {{detail.car_name}} {% endblock %}
+
+{% block body %}
+
+{% block search %}
+{% endblock %}
+
+<div class="f" style="display: flex;">
+<div class="f1">
+<div class ='col-sm-6 col-sm-offset-3'  style="width: 48vw; ">
+  
+  <div class="list-group-item active" style="border-radius: 0px 20px 0px 0px;">
+    <strong><span class="glyphicon glyphicon-film"></span> Car Detail</strong>
+  </div>
+  <div class="list-group-item"  >
+  {% if detail.image %}
+  <center><img src='{{ detail.image.url }}' class="img-responsive"/></center>
+  
+  {% endif %}
+</div>
+  <a href="" class="list-group-item"><strong>Car Name: </strong>{{detail.car_name}}</a>
+  <a href="" class="list-group-item"><strong>Company Name   : </strong>{{detail.company_name}}</a>
+  <a href="" class="list-group-item"><strong>Num Of Seat   : </strong>{{detail.num_of_seats}}</a>
+  <a href="" class="list-group-item"><strong>Cost Per Day   : </strong>Rs {{detail.cost_par_day}}</a>
+  <a href="" class="list-group-item"><strong>Like   : </strong>{{detail.like}}</a>
+  <a href="" class="list-group-item"><strong>Other Info   : </strong>{{detail.content}}</a><br>
+  
+  <div class="pull-right">
+    <a href="{% url 'newcar' %}"><button type="button" class="butn-new-add" style="background-color: #352cac"><span class="glyphicon glyphicon-list"></span> Back</button></a>
+    {% if detail.car_name in val%}
+    <a href="" class="btn btn-danger" style="background-color: red; pointer-events: none;" role="button">Booked</a></p>
+    {% else %}
+    <a href="{% url 'order_create' %}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Book</button></a>
+    {% endif %}
+  </div>  </div> </div>
+<hr>
+
+<div class="f2" style=" margin-right: 50px; border: 1px solid rgb(202, 202, 202); height: max-content;">
+  <div class="list-group-item active"  style="border-radius: 0px 20px 0px 0px;">
+    <strong><span class="glyphicon glyphicon-film"></span> Reviews   : </strong>
+  </div>
+  <div class="rv" style="overflow-y:auto; height:520px;">
+<a href="" class="list-group-item">
+  {% for i in f_back reversed %}<br>
+       {{i.0}} <div align = "right">Rating: {{i.1}}</div><div align ="right">{{i.2}}</div>
+         {{i.3}}
+         <br>
+    -----------------------------------------------------------------------------------
+   {% endfor %}
+ 
+ </a><br>
+  </div></div>
+  
+
+</div>
+
+{% endblock %}
